@@ -8,6 +8,8 @@ def floater(num1, num2):
         num2 *= 10
 
 def answerdei(title, num1, num2):
+    num1 = float(num1)
+    num2 = float(num2)
     if title == "+":
         return str(num1 + num2)
     elif title == "+f":
@@ -31,25 +33,30 @@ def answerdei(title, num1, num2):
         num2 /= 100
 app = Flask(__name__)
 
-
+num1= 100
+num2 = 200
+title = "+"
 @app.route("/")
 def hello():
     return render_template("index.html")
 
 @app.route("/calculator", methods=['POST', 'GET'])
 def calculator():
+    global num1
+    global num2
+    global title
     if request.method == 'POST':
         num1 = request.form['title']
         title = request.form['sign']
         num2 = request.form['text']
-        num1 = float(num1)
-        num2 = float(num2)
-        return answerdei(title, num1, num2)
-
-
-
+        return render_template("calculator.html", answer = answerdei(title, num1, num2))
     else:
         return render_template("calculator.html")
+
+@app.route("/answer")
+def answer():
+    return render_template("/answer.html", answer = answerdei(title, num1, num2))
+
 
 
 @app.route("/about")
