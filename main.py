@@ -12,8 +12,6 @@ def answerdei(title, num1, num2):
     num2 = float(num2)
     if title == "+":
         return str(num1 + num2)
-    elif title == "+f":
-        return str((num1 * 10 + num2 * 10))
     elif title == "-":
         return str(num1 - num2)
     elif title == "*":
@@ -26,6 +24,8 @@ def answerdei(title, num1, num2):
         return str(num1 % num2)
     elif title == "sqrt":
         return str(sqrt(num1))
+    elif title == "Линейное уравнение":
+        return str(-num1 / num2)
     elif title == "**":
         return str(num1 ** num2)
     if num1 < 0 and num2 < 0:
@@ -52,11 +52,6 @@ def calculator():
         return render_template("calculator.html", answer = answerdei(title, num1, num2))
     else:
         return render_template("calculator.html")
-
-@app.route("/answer")
-def answer():
-    return render_template("/answer.html", answer = answerdei(title, num1, num2))
-
 
 
 @app.route("/about")
