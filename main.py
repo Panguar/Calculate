@@ -3,11 +3,6 @@ from math import sqrt
 from flask_sqlalchemy import SQLAlchemy
 from math_123 import answerget
 
-def floater(num1, num2):
-    if num1 < 0 and num2 < 0:
-        num1 *= 10
-        num2 *= 10
-
 
 app = Flask(__name__)
 
